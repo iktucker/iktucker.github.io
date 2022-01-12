@@ -7,7 +7,7 @@ function createPostContent() {
 }
 
 async function getPage (pageId, accessToken) {
-    let response = await fetch(`https://graph.facebook.com/${pageId}/feed?published=false&message=An unpublished post&access_token=${accessToken}`).then((response) => response.json());
+    let response = await fetch(`https://graph.facebook.com/v12.0/${pageId}/feed?published=false&message=An unpublished post&access_token=${accessToken}`).then((response) => response.json());
 
     return response;
 }
