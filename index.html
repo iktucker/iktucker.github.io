@@ -1,23 +1,38 @@
-<script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId            : '250605317150749',
-        autoLogAppEvents : true,
-        xfbml            : true,
-        version          : 'v12.0'
-      });
-        FB.login(function(response) {
-            if (response.authResponse) {
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me', function(response) {
-            console.log('Good to see you, ' + response.name + '.');
-            });
-            } else {
-            console.log('User cancelled login or did not fully authorize.');
-            }
-        });
-    };
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>FB Birthday Post Scheduler Application</title>
 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <h2 style="text-align: center;">Facebook Birthday Post Scheduler</h2>
+        </div>
 
-  </script>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>  
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId            : '250605317150749',
+                    autoLogAppEvents : true,
+                    xfbml            : true,
+                    version          : 'v12.0'
+                });
+
+                FB.login(function(response) {
+                    if (response.authResponse) {
+                    console.log('Welcome!  Fetching your information.... ');
+                    FB.api('/me', function(response) {
+                    console.log('Good to see you, ' + response.name + '.');
+                    });
+                    } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                    }
+                });
+            };
+        </script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    </body>
+</html>
