@@ -33,16 +33,25 @@
                     version          : 'v12.0'
                 });
 
-                FB.login(function(response) {
+                FB.login(async function(response) {
                     if (response.authResponse) {
-                    console.log('Welcome!  Fetching your information.... ');
-                    FB.api('/me', function(response) {
-                    console.log('Good to see you, ' + response.name + '.');
-                    });
-                    } else {
-                    console.log('User cancelled login or did not fully authorize.');
+                        console.log('Welcome!  Fetching your information.... ');
+                        var userAccessToken = response.authResponse.accessToken;
+
+                        let pageAccessToken = await fetch(`https://graph.facebook.com/216852201669749fields=access_token&access_token=${userAccessToken}`).then((response) => response.json()).then((json) => json['access_token']);
+
+                        let pageResponse = await getPage('216852201669749', pageAccessToken);
+                        console.log(pageResponse);
+                        
+                        FB.api('/me', function(response) {
+                            console.log('Good to see you, ' + response.name + '.');
+                        });
+                        } else {
+                        console.log('User cancelled login or did not fully authorize.');
                     }
                 });
+
+                
             };
         </script>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
